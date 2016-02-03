@@ -39,6 +39,8 @@
 @property (nonatomic, weak) UIImage *leftArrowImage, *leftArrowSelectedImage;
 @property (nonatomic, weak) UIImage *rightArrowImage, *rightArrowSelectedImage;
 
+@property (nonatomic, strong) UIImage *leftToolbarButtonImage;
+
 // View customization
 @property (nonatomic) BOOL displayDoneButton;
 @property (nonatomic) BOOL useWhiteBackgroundColor;

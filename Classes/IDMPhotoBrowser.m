@@ -78,6 +78,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 // Private Properties
 @property (nonatomic, strong) UIActionSheet *actionsSheet;
 @property (nonatomic, strong) UIActivityViewController *activityViewController;
+@property (nonatomic, strong) UIBarButtonItem *leftToolbarButton;
 
 // Private Methods
 
@@ -651,6 +652,13 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                   target:self
                                                                   action:@selector(actionButtonPressed:)];
+    // Left Action Button
+    if (self.leftToolbarButtonImage) {
+        self.leftToolbarButton = [[UIBarButtonItem alloc] initWithImage:self.leftToolbarButtonImage
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                 action:@selector(leftActionButtonPressed:)];
+    }
     
     // Gesture
     _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
@@ -799,6 +807,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                target:self action:nil];
     NSMutableArray *items = [NSMutableArray new];
+    
+    if (self.leftToolbarButton) {
+        [items addObject:self.leftToolbarButton];
+        [items addObject:flexSpace];
+    }
     
     if (_displayActionButton)
         [items addObject:fixedLeftSpace];
