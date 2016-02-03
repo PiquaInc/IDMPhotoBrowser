@@ -1255,6 +1255,13 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 #pragma mark - Buttons
 
+- (void)leftActionButtonPressed:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(photoBrowser:didPressLeftToolbarButtonAtPhotoIndex:)]) {
+        [self.delegate photoBrowser:self didPressLeftToolbarButtonAtPhotoIndex:_currentPageIndex];
+    }
+}
+
 - (void)doneButtonPressed:(id)sender {
     if (_senderViewForAnimation && _currentPageIndex == _initalPageIndex) {
         IDMZoomingScrollView *scrollView = [self pageDisplayedAtIndex:_currentPageIndex];
